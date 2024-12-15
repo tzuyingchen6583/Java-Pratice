@@ -57,25 +57,12 @@ public class Game {
     private void goRoom(String direction) 
     {
         Room nextRoom = null;
-        if(direction.equals("north")) {
-            nextRoom = currentRoom.northExit;
-        }
-        if(direction.equals("east")) {
-            nextRoom = currentRoom.eastExit;
-        }
-        if(direction.equals("south")) {
-            nextRoom = currentRoom.southExit;
-        }
-        if(direction.equals("west")) {
-            nextRoom = currentRoom.westExit;
-        }
-
+        nextRoom = currentRoom.getRoom(direction);
         if (nextRoom == null) {
             System.out.println("那里没有门！");
         }
         else {
             currentRoom = nextRoom;
-            
         }
     }
 	
