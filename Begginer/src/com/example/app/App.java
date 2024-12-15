@@ -10,20 +10,13 @@ import java.util.TreeMap;
 
 
 public class App {
-    // Create a logger instance
-    private static final Logger logger = Logger.getLogger(App.class.getName());
-
     public static void main(String[] args) {
-        logger.info("Application started");
-        Scanner in = new Scanner(System.in);  // Create a Scanner object
-        Fraction a = new Fraction(in.nextInt(), in.nextInt());
-        Fraction b = new Fraction(in.nextInt(), in.nextInt());
-
-
-
-    }
-
-    class Fraction{
-
+      
+        int[] matrix = {1, 2, 3};
+        System.out.println("Memory layout of the 2D array:");
+        for (int i = 0; i < matrix.length; i++) {
+            System.out.println("Row " + i + " address: " + System.identityHashCode(matrix[i]));
+           
+        }
     }
 }
