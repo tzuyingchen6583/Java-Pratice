@@ -1,59 +1,39 @@
 package castle;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Room {
     public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
+    private Map<String, Room> exits = new HashMap<String, Room>(); // 动态存储出口方向和对应房间
 
     public Room(String description) 
     {
         this.description = description;
     }
 
-    public void setExits(Room north, Room east, Room south, Room west) 
+    public void setExit(String direction, Room room) 
     {
-        if(north != null)
-            northExit = north;
-        if(east != null)
-            eastExit = east;
-        if(south != null)
-            southExit = south;
-        if(west != null)
-            westExit = west;
+        if (direction != null && room != null) {
+            exits.put(direction, room); // 动态添加出口方向和房间
+        }
     }
 
     public String getExitDesc() 
     {
-        StringBuilder sb = new StringBuilder("Exits: ");
-        if(northExit != null)
-            sb.append("north");
-        if(eastExit != null)
-            sb.append("east");
-        if(southExit != null)
-            sb.append("south");
-        if(westExit != null)
-            sb.append("west");
-       return sb.toString();
+        if (exits.isEmpty()) {
+            return "No exits available.";
+        }
+
+        StringBuilder sb = new StringBuilder("");
+        for (String direction : exits.keySet()) {
+            sb.append(direction).append(" ");
+        }
+        return sb.toString().trim(); // 去掉末尾多余的空格
     }
 
-    public Room getRoom(String direction)
-    {
-        Room ret = null;
-        if(direction.equals("north")) {
-            ret = northExit;
-        }
-        if(direction.equals("east")) {
-            ret = eastExit;
-        }
-        if(direction.equals("south")) {
-            ret = southExit;
-        }
-        if(direction.equals("west")) {
-            ret = westExit;
-        }
-        return ret;
+    public Room getRoom(String direction) {
+        return exits.get(direction); // 从 Map 中直接获取房间
     }
 
 
