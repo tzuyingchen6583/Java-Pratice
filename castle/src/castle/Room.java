@@ -24,6 +24,21 @@ public class Room {
             westExit = west;
     }
 
+    public String getExitDesc() 
+    {
+        StringBuilder sb = new StringBuilder("Exits: ");
+        if(northExit != null)
+            sb.append("north");
+        if(eastExit != null)
+            sb.append("east");
+        if(southExit != null)
+            sb.append("south");
+        if(westExit != null)
+            sb.append("west");
+       return sb.toString();
+    }
+
+
     @Override
     public String toString()
     {
